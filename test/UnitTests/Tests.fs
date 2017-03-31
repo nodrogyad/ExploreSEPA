@@ -2,9 +2,6 @@ namespace ExploreSepa
 
 module Tests =
 
-  open System
-  open System.Xml
-  open System.Xml.Linq
   open Expecto
   open XmlBuilding
 
@@ -33,11 +30,6 @@ module Tests =
 
   let output = createMsg record channel
 
-//  let tsa = (output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.CdtrAgt.FinInstnId.BIC)
-//  let tsa = (output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.CdtrAgt.FinInstnId.XElement)
-//  printfn "-----------------> %A" tsa 
-//  printProperties tsa
-
   [<Tests>]
   let isoTests =
     testList "Envelope Header" [
@@ -65,18 +57,14 @@ module Tests =
           test "TotalAmount" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.GrpHdr.TtlIntrBkSttlmAmt.Value 0.1M "Fail"}
           test "IntrBkSttlmDt" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.GrpHdr.IntrBkSttlmDt (System.DateTime(2017, 2, 24)) "Fail"}
           test "SttlmMtd" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.GrpHdr.SttlmInf.SttlmMtd "CLRG" "Fail"}
-          test "ClrSys" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.GrpHdr.SttlmInf.ClrSys.XElement.Value "LITAS-RLS" "Fail"}
+          test "ClrSys" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.GrpHdr.SttlmInf.ClrSys.Prtry "LITAS-RLS" "Fail"}
 
         ]
         testList "pacs.008.001.02.2016" [
           test "Instruction Id" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.PmtId.InstrId "D1170224384664" "Fail"}
           test "Tax Id" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.PmtId.TxId "dov" "Fail"}
           test "Debitor Acct" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.DbtrAcct.Id.Iban "LT950100100000123456" "Fail"}
-          test "Bank Id(BIC)" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.CdtrAgt.FinInstnId.XElement.Value "XXTSLT20XXX" "Fail"}
-         
-
-          
-          
+          test "Bank Id(BIC)" {Expect.equal output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.CdtrAgt.FinInstnId.Bic "XXTSLT20XXX" "Fail"}          
         ]
 
       ]
