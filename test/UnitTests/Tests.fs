@@ -34,9 +34,9 @@ module Tests =
   let output = createMsg record channel
 
 //  let tsa = (output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.CdtrAgt.FinInstnId.BIC)
-  let tsa = (output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.CdtrAgt.FinInstnId.XElement)
-  printfn "-----------------> %A" tsa 
-  printProperties tsa
+//  let tsa = (output.Doc.Ffcctrns.Document.FiToFiCstmrCdtTrf.CdtTrfTxInf.CdtrAgt.FinInstnId.XElement)
+//  printfn "-----------------> %A" tsa 
+//  printProperties tsa
 
   [<Tests>]
   let isoTests =
