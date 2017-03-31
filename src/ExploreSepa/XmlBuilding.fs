@@ -19,8 +19,8 @@ module XmlBuilding =
     BIC : string
   }
 
-  type FFCCTRNS = XmlProvider<FFCCTRNS_Sample>
+  type FFCCTRNS = XmlProvider<FFCCTRNS_Sample, Global=true>
 
   let createMsg payment channel =
-    FFCCTRNS.Parse(FFCCTRNS_Sample)
+    FFCCTRNS.Parse(FFCCTRNS_Sample) 
 
